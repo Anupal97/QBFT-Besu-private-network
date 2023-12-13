@@ -1,0 +1,19 @@
+version: "3.4"
+services:
+  node:
+    image: hyperledger/besu:latest
+    container_name: "node-1-qbft"
+    volumes:
+      - .:/usr/app/
+    command:
+      [
+        "--data-path=/usr/app/data",
+        "--genesis-file=/usr/app/genesis.json",
+        "--rpc-http-enabled",
+        "--rpc-http-api=ETH,NET,QBFT,EEA",
+        "--host-allowlist=*",
+        "--rpc-http-cors-origins=*",
+        "--rpc-http-host=0.0.0.0"
+      ]
+    ports:
+      - 8545:8545
